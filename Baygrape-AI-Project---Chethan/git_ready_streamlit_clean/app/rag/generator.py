@@ -2,8 +2,7 @@ import google.generativeai as genai
 from app.config import GOOGLE_API_KEY
 
 # Configure Gemini
-# Get API key from Streamlit Secrets
-GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
+
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Free working model
@@ -30,4 +29,5 @@ Question:
     response = model.generate_content(prompt)
 
     return response.text
+
 
