@@ -10,24 +10,30 @@ MODEL_NAME = "gemini-3-flash-preview"
 
 def generate_answer(context: str, question: str, chat_history: str = ""):
     prompt = f"""
-You are a helpful assistant.
+You are an intelligent AI assistant.
+
+You may receive document context from a knowledge base.
+
+If the context is relevant to the user's question, use it to answer.
+
+If the context is empty or not relevant, answer normally using your general knowledge.
 
 Conversation history:
 {chat_history}
 
-Answer ONLY using the context below.
-If the answer is not present, say "I don't know".
-
-Context:
+Context from documents:
 {context}
 
-Question:
+User question:
 {question}
+
+Provide a clear and helpful answer.
 """
 
     model = genai.GenerativeModel(MODEL_NAME)
     response = model.generate_content(prompt)
 
     return response.text
+
 
 
